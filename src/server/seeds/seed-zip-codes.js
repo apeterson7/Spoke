@@ -33,10 +33,13 @@ export async function seedZipCodes() {
         }));
 
       log.info(zipCodes.length, "ZIP CODES");
-      ZipCode.__proto__
-        .save(zipCodes)
-        .then(() => log.info("Finished seeding"))
-        .error(err => log.error("error", err));
+      ZipCode.save(zipCodes)
+        .then(function(result) {
+          log.info("Finished seeding", result);
+        })
+        .error(function(err) {
+          log.error("error", err);
+        });
     }
   }
 }
